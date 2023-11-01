@@ -4,7 +4,6 @@ import "./index.css";
 
 function Card(props) {
   const { item } = props;
-  console.log("item", item);
   return (
     <div className="card">
       <p>

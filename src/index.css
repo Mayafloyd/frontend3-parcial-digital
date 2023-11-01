@@ -1,6 +1,7 @@
 * {
   font-family: monospace, "Lucida Console", "Courier New";
   text-align: center;
+  box-sizing: border-box;
 }
 body {
   background-color: rgb(211, 207, 255);
@@ -20,9 +21,13 @@ body {
 } */
 .container {
   width: 100%;
+  padding: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 10px;
+  gap: 10px;
+}
+.errorMessage {
+  color: rgb(255, 0, 115);
 }
 .card {
   background-color: antiquewhite;

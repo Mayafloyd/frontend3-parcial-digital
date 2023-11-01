@@ -5,9 +5,7 @@ import "./index.css";
 function App() {
   const [formData, setFormData] = useState({ name: "", lastname: "" });
   const [items, setItems] = useState([]);
-
-  console.log("items", items);
-  const fullNames = [];
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -15,11 +13,21 @@ function App() {
       ...formData,
       [name]: value,
     });
+    setErrorMessage("");
   };
-  //Aqui deberias agregar los estados y los handlers para los inputs
 
   const handleAddItem = (e) => {
     e.preventDefault();
+    if (formData.name.length < 3 || formData.name.startsWith(" ")) {
+      setErrorMessage("Por favor chequea que la información sea correcta");
+      return;
+    }
+
+    if (formData.lastname.length < 6) {
+      setErrorMessage("Por favor chequea que la información sea correcta");
+      return;
+    }
+
     if (formData.name && formData.lastname) {
       const newItem = { ...formData };
       setItems([...items, newItem]);
@@ -50,6 +58,7 @@ function App() {
           <button type="submit">Agregar</button>
         </div>
       </form>
+      {errorMessage && <div className="errorMessage">{errorMessage}</div>}
       <div className="container">
         {items.map((item, index) => (
           <Card key={index} item={item} />
